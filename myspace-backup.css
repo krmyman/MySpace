@@ -81,7 +81,7 @@ p.lead {
   box-shadow: 0 8px 20px rgba(20, 20, 40, 0.06);
   /*微柔陰影*/
   overflow: hidden;
-  max-height: 0;
+  max-height: scrollHeight;
   /*collapsed 狀態收起*/
   padding: 0 14px;
   /*收起時不顯示上下 padding*/
@@ -101,7 +101,31 @@ p.lead {
   /*展開時內距*/
   /* max-height 由js動態設定為 scrollHight(更平滑且不限字數)*/
 }
-
+#hobby-content {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(20, 20, 40, 0.06);
+  /*微柔陰影*/
+  overflow: hidden;
+  max-height: scrollHeight;
+  /*collapsed 狀態收起*/
+  padding: 0 14px;
+  /*收起時不顯示上下 padding*/
+  margin-top: 12px;
+  color: #444;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: max-height 420ms cubic-bezier(.2, .8, .2, 1), padding 320ms ease;
+  word-break: break-word;
+  /*長字自動換行，防止撐爆版面*/
+  white-space: normal;
+}
+/*展開後樣式*/
+#hobby-content.expanded {
+  padding: 14px;
+  /*展開時內距*/
+  /* max-height 由js動態設定為 scrollHight(更平滑且不限字數)*/
+}
 .item.small {
   font-weight: 500;
   background: transparent;

@@ -37,4 +37,35 @@ document.addEventListener("DOMContentLoaded", () => {
             content.addEventListener("transitionend", onTransitionEnd);
         }
     });
+    // === 興趣 toggle ===
+    const hobbyToggle = document.getElementById("hobby-toggle");
+    const hobbyContent = document.getElementById("hobby-content");
+
+    if (hobbyToggle && hobbyContent) {
+        hobbyContent.style.maxHeight = "0px";
+
+        hobbyToggle.addEventListener("click", () => {
+            const isOpen = hobbyContent.classList.contains("expanded");
+
+            if (isOpen) {
+                hobbyContent.style.maxHeight = hobbyContent.scrollHeight + "px";
+                void hobbyContent.offsetHeight;
+                hobbyContent.style.maxHeight = "0px";
+                hobbyContent.classList.remove("expanded");
+                hobbyToggle.textContent = "興趣 ▼";
+            } else {
+                hobbyContent.classList.add("expanded");
+                hobbyContent.style.maxHeight = hobbyContent.scrollHeight + "px";
+                hobbyToggle.textContent = "興趣 ▲";
+
+                const onEnd = (e) => {
+                    if (e.propertyName === "max-height") {
+                        hobbyContent.style.maxHeight = "none";
+                        hobbyContent.removeEventListener("transitionend", onEnd);
+                    }
+                };
+                hobbyContent.addEventListener("transitionend", onEnd);
+            }
+        });
+    }
 });

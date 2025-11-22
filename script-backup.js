@@ -1,44 +1,71 @@
-//等整個HTML結構載入完成，才開始執行
 document.addEventListener("DOMContentLoaded", () => {
-    //抓取元素
     const toggle = document.getElementById("about-toggle");
     const content = document.getElementById("about-content");
-    //
-    if(!toggle || !content)return;
 
-    //初始確保 collapsed 狀態一致
-    content.classList.remove("expended");
+    if (!toggle || !content) return;
+
+    // 初始化
+    content.classList.remove("expanded");
     content.style.maxHeight = "0px";
     content.setAttribute("aria-hidden", "true");
 
-    toggle.addEventListener("click",() => {
+    toggle.addEventListener("click", () => {
         const isExpanded = content.classList.contains("expanded");
-        if(isExpanded){
-            //收回
-            content.style.maxHeight = content.scrollHeight + "px";//一步設定當前高度，接著強制回0（觸發動畫）
-            //強制回流，確保transition起效（少見但可靠）
-            void content.offsetHeight;
-            content.style.maxHeight = "0px";
-            content.classList.remove("expended");
-            content.setAttribute("aria-hidden","true");
-            toggle.textContent = "個人簡介 ▼";
-        }
-        else{
-            //展開
-            content.classList.add("expended");
-            //先把maxHight設定內容高度以展開（允許任意高度）
+
+        if (isExpanded) {
+            // 收起
             content.style.maxHeight = content.scrollHeight + "px";
-            content.setAttribute("aria-hidden","flase");
+            void content.offsetHeight; // 強制回流，啟動動畫
+            content.style.maxHeight = "0px";
+            content.classList.remove("expanded");
+            content.setAttribute("aria-hidden", "true");
+            toggle.textContent = "個人簡介 ▼";
+        } else {
+            // 展開
+            content.classList.add("expanded");
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.setAttribute("aria-hidden", "false");
             toggle.textContent = "個人簡介 ▲";
-            //當transition 結束後 可清除 inline maxHeight(非必要，但可以讓高度自動調整)
+
             const onTransitionEnd = (e) => {
-                if(e.propertyName === "max-height"){
-                    //清理以便內容高度變動(例如載入照片)也會自然顯示
-                    content.style.maxHeight = "none";
-                    content.removeEventListener("transitionend",onTransitionEnd);
+                if (e.propertyName === "max-height") {
+                    content.style.maxHeight = "none"; // 展開後允許內容自適應高度
+                    content.removeEventListener("transitionend", onTransitionEnd);
                 }
             };
-            content.addEventListener("transitionend",onTransitionEnd);
+
+            content.addEventListener("transitionend", onTransitionEnd);
         }
     });
+    // === 興趣 toggle ===
+    const hobbyToggle = document.getElementById("hobby-toggle");
+    const hobbyContent = document.getElementById("hobby-content");
+
+    if (hobbyToggle && hobbyContent) {
+        hobbyContent.style.maxHeight = "0px";
+
+        hobbyToggle.addEventListener("click", () => {
+            const isOpen = hobbyContent.classList.contains("expanded");
+
+            if (isOpen) {
+                hobbyContent.style.maxHeight = hobbyContent.scrollHeight + "px";
+                void hobbyContent.offsetHeight;
+                hobbyContent.style.maxHeight = "0px";
+                hobbyContent.classList.remove("expanded");
+                hobbyToggle.textContent = "興趣 ▼";
+            } else {
+                hobbyContent.classList.add("expanded");
+                hobbyContent.style.maxHeight = hobbyContent.scrollHeight + "px";
+                hobbyToggle.textContent = "興趣 ▲";
+
+                const onEnd = (e) => {
+                    if (e.propertyName === "max-height") {
+                        hobbyContent.style.maxHeight = "none";
+                        hobbyContent.removeEventListener("transitionend", onEnd);
+                    }
+                };
+                hobbyContent.addEventListener("transitionend", onEnd);
+            }
+        });
+    }
 });

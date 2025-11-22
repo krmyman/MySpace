@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-hant">
+  <!--設定語言-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--設定網頁寬度-->
+    <title>My Space</title>
+    <link rel="stylesheet" href="myspace.css" />
+    <!--連結CSS-->
+  </head>
+  <body>
+    <main class="wrap">
+      <!--置中顯示-->
+      <!--中心堆疊-->
+      <img
+        class="avatar"
+        src="picture/IMG_6657.jpeg"
+        alt="個人照"
+      /><!--圓形頭像-->
+      <h1>Jason 楊濰鴻</h1>
+      <p class="lead">雲端小白｜個人創意空間｜孟公我老恭</p>
+      <div class="stack">
+        <!--點擊觸發-->
+        <div class="item" id="about-toggle" style="cursor:pointer;user-select:none;">個人簡介 ▼</div>
+        <div id="about-content">
+          AKA disappeared_mrfox/消失的狐狸君/krmyman.<br>
+          MBTI: INTJ-T. 羊星球的一員. <br>
+          喜歡學習、認識自己有興趣的人事物. <br>
+          喜歡狗、貓等小動物.<br>
+          喜歡聽音樂(盧廣仲、IU、Ivy、陳華、Lee Young Ji)聽音樂但不一定會記住歌名<br>
+          喜歡看漫才(面白大丈夫、達康.come、蔡冠雙頭)<br>
+          喜歡聽股癌Podcast(choco幹你娘、美國電長、直男巧虎)<br>
+          感情狀態: 單身.<br>
+        </div>
+        <div class="item">興趣</div>
+        <div class="item small">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 20px;
+            "
+          >
+            <!--同一排-->
+            <a
+              href="https://github.com/krmyman"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                text-decoration: none;
+              "
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                width="18"
+                height="18"
+                alt="GitHub"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/disappeared_mrfox/"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                text-decoration: none;
+              "
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                width="18"
+                height="18"
+                alt="IG"
+              />
+            </a>
+            <a
+              href="mailto:jason1010061@gmail.com"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                text-decoration: none;
+              "
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
+                width="18"
+                height="18"
+                alt="Email"
+              />
+            </a>
+          </div>
+        </div>
+        <div class="item small">其他</div>
+      </div>
+      <footer style="margin-top: 18px; font-size: 12px; color: #888">
+        © 2025 Jason Yang KR.
+      </footer>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

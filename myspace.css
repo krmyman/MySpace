@@ -147,3 +147,123 @@ p.lead {
     height: 100px
   }
 }
+
+/* ---------- Design tokens ---------- */
+:root{
+  --bg:#f3f5f9;
+  --card-grad: linear-gradient(180deg,#ffffff,#fbfbfd);
+  --accent: #4a8cff;
+  --muted: #7b8594;
+  --shadow-1: 0 8px 20px rgba(18,24,40,0.06);
+  --shadow-2: 0 18px 48px rgba(13,24,72,0.08);
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 8px;
+  --smooth: cubic-bezier(.2,.8,.2,1);
+}
+
+/* Use Inter if available */
+body {
+  background: url("picture/IMG_6658.jpeg") no-repeat center center/cover;
+  background-attachment: fixed;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial;
+}
+
+/* Tweak the main wrap to get subtle glassy look */
+.wrap{
+  width:95%;
+  max-width:760px; /* give more breathing room on desktop */
+  background: var(--card-grad);
+  border-radius: var(--radius-lg);
+  padding:36px 34px;
+  box-shadow: var(--shadow-2);
+  text-align:center;
+  transition: transform 240ms var(--smooth), box-shadow 240ms var(--smooth);
+}
+
+/* Slight lift on hover when in desktop (feels interactive) */
+@media (hover:hover) and (min-width:720px) {
+  .wrap:hover { transform: translateY(-4px); box-shadow: 0 26px 64px rgba(13,24,72,0.10); }
+}
+
+/* Avatar tweak */
+.avatar{ width:140px; height:140px; border-radius:50%; border:6px solid rgba(74,140,255,0.14); object-fit:cover; margin-bottom:18px; }
+
+/* Headline */
+h1{ font-size:24px; margin:6px 0 6px; font-weight:700; color:#0f1724; letter-spacing:0.2px; }
+p.lead{ color:var(--muted); font-size:15px; margin-bottom:18px; }
+
+/* Stack & items */
+.stack{ display:flex; flex-direction:column; gap:14px; align-items:center; }
+
+/* item base style (slightly softer) */
+.item{
+  width:100%;
+  background: linear-gradient(180deg, rgba(74,140,255,0.06), rgba(74,140,255,0.02));
+  border: 1px solid rgba(16,24,40,0.04);
+  padding:12px 16px;
+  border-radius: var(--radius-sm);
+  color:#0f1724;
+  font-weight:600;
+  cursor: pointer;
+  transition: transform 180ms var(--smooth), box-shadow 180ms var(--smooth), background 180ms var(--smooth);
+}
+
+/* hover / focus effect for items */
+@media (hover:hover){
+  .item:hover, .item:focus{ transform: translateY(-3px); box-shadow: 0 10px 22px rgba(10,20,40,0.06); }
+}
+
+/* small item variant (dashed) */
+.item.small{ font-weight:500; background:transparent; border:1px dashed rgba(0,0,0,0.06); cursor:default; }
+
+/* Links row — center icons */
+.item.small .links-row{ display:flex; gap:18px; align-items:center; justify-content:center; }
+
+/* project-card responsiveness */
+.project-card{ width:100%; display:flex; gap:14px; background:#fff; border-radius:10px; box-shadow: var(--shadow-1); padding:12px; text-align:left; align-items:flex-start; transition: transform 200ms var(--smooth), box-shadow 200ms var(--smooth); }
+.project-card:hover{ transform: translateY(-4px); box-shadow: 0 18px 40px rgba(10,18,40,0.08); }
+
+/* project image */
+.project-img{ width:72px; height:72px; border-radius:8px; object-fit:cover; flex-shrink:0; }
+
+/* project text */
+.project-title{ margin:0; font-size:16px; font-weight:700; color:#0f1724; }
+.project-desc{ margin:6px 0 10px; color:var(--muted); font-size:14px; line-height:1.5; }
+
+/* project link (button-like) */
+.project-link{ text-decoration:none; color:var(--accent); font-weight:700; }
+
+/* about / hobby card refined */
+#about-content, #hobby-content {
+  background:#fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  overflow:hidden;
+  max-height:0;
+  padding:0 14px;
+  margin-top:10px;
+  color:#444;
+  font-size:14px;
+  line-height:1.6;
+  transition: max-height 420ms var(--smooth), padding 320ms ease;
+  word-break:break-word;
+}
+
+/* expanded state */
+#about-content.expanded, #hobby-content.expanded { padding:14px; }
+
+/* subtle arrow rotation via class */
+.toggle-arrow { display:inline-block; transition: transform 260ms var(--smooth); }
+.item.open .toggle-arrow { transform: rotate(180deg); }
+
+/* footer */
+footer{ margin-top:18px; font-size:12px; color:#9aa3b2; }
+
+/* Responsive adjustments */
+@media (max-width:720px){
+  .wrap{ max-width:420px; padding:28px 18px; }
+  h1{ font-size:20px; }
+  .project-img{ width:56px; height:56px; }
+  .stack{ gap:12px; }
+}

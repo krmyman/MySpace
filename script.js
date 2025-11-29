@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             // 手風琴：展開 about → 自動收 hobby
             if (hobbyContent.classList.contains("expanded")) {
-                collapse(hobbyContent, hobbyToggle, "興趣");
+                collapse(hobbyContent, hobbyToggle, "興趣簡介");
             }
             expand(aboutContent, aboutToggle, "個人簡介");
         }
@@ -59,13 +59,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const open = hobbyContent.classList.contains("expanded");
 
         if (open) {
-            collapse(hobbyContent, hobbyToggle, "興趣");
+            collapse(hobbyContent, hobbyToggle, "興趣簡介");
         } else {
             // 手風琴：展開 hobby → 自動收 about
             if (aboutContent.classList.contains("expanded")) {
                 collapse(aboutContent, aboutToggle, "個人簡介");
             }
-            expand(hobbyContent, hobbyToggle, "興趣");
+            expand(hobbyContent, hobbyToggle, "興趣簡介");
         }
     });
     // ===== Lightbox 控制 (穩定版) =====

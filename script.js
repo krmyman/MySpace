@@ -68,4 +68,36 @@ document.addEventListener("DOMContentLoaded", () => {
             expand(hobbyContent, hobbyToggle, "興趣");
         }
     });
+    // ===== Lightbox 控制 (穩定版) =====
+    (function () {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        if (!lightbox || !lightboxImg) return;
+
+        // 開啟 lightbox：window.openLightbox 可以被 inline onclick 呼叫
+        window.openLightbox = function (imgUrl) {
+            // 設定圖片
+            lightboxImg.src = imgUrl;
+            // 加上 active
+            lightbox.classList.add("active");
+            // 加上 body class 阻止底層互動/hover（選擇性）
+            document.body.classList.add("lightbox-open");
+        };
+
+        // 關閉 lightbox（點遮罩或按 Esc）
+        function closeLB() {
+            lightbox.classList.remove("active");
+            lightboxImg.src = "";
+            document.body.classList.remove("lightbox-open");
+        }
+
+        lightbox.addEventListener("click", function (e) {
+            // 只有在點到遮罩本身時關閉（避免點到圖片時關閉）
+            if (e.target === lightbox) closeLB();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closeLB();
+        });
+    })();
 });
